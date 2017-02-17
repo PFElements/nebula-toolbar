@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>nebula-toolbar</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../nebula-toolbar.html">
+    <style is="custom-style" include="demo-pages-shared-styles">
+      .light {
+        display: inline-block;
+        background-color: white;
+        color: black;
+        padding: 16px;
+        border: 1px solid black;
+      }
+      .dark {
+        display: inline-block;
+        background-color: black;
+        color: white;
+        padding: 16px;
+        border: 1px solid black;
+      }
+      nebula-toolbar > * {
+        padding: 8px;
+        cursor: pointer;
+      }
+      nebula-toolbar [selected] {
+        color: white;
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container">
+      <h3>Horizontal Toolbar</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <nebula-toolbar direction="horizontal">
+            <a hidden>Hidden</a>
+            <a>Link 1</a>
+            <a>Link 2</a>
+            <a>Link 3</a>
+            <a disabled>Link 4</a>
+            <a>Link 5</a>
+          </nebula-toolbar>
+        </template>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container">
+      <h3>Vertical Toolbar</h3>
+      <demo-snippet>
+        <template is="dom-bind">
+          <nebula-toolbar direction="vertical">
+            <a hidden>Hidden</a>
+            <a>Link 1</a>
+            <a>Link 2</a>
+            <a>Link 3</a>
+            <a disabled>Link 4</a>
+            <a>Link 5</a>
+          </nebula-toolbar>
+        </template>
+      </demo-snippet>
+    </div>
+
+  </body>
+</html>

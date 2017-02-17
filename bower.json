@@ -1,0 +1,38 @@
+{
+  "name": "nebula-toolbar",
+  "description": "A web component to manage a group of toolbar controls.",
+  "license": "ISC",
+  "authors": [
+    "Chris Beckett <chrisb@arsnebula.com>"
+  ],
+  "homepage": "https://github.com/arsnebula/nebula-toolbar#README",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "keywords": [
+    "polymer",
+    "webcomponent",
+    "web component",
+    "webcomponents",
+    "web-components",
+    "control",
+    "web-control",
+    "toolbar",
+    "navigation", 
+    "menu"
+  ],
+  "main": "nebula-toolbar.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.7.1"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+    "web-component-tester": "Polymer/web-component-tester#^5.0.0",
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.4.0"
+  }
+}
