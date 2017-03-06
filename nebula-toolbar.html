@@ -5,6 +5,7 @@ This code may be used under the terms found in LICENSE.md of this repository.
 -->
 
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../nebula-select/nebula-select-behavior.html">
 
 <!--
 `<nebula-toolbar>` is a web component to manage a group of toolbar controls.
@@ -58,25 +59,17 @@ The following demonstrates the element with some common properties and events:
         flex-direction: column;
       }
     </style>
-    <slot id="content"></slot>
+    <slot></slot>
   </template>
   <script>
-  (function() {
-    var KEY_DOWN = 40
-    var KEY_UP = 38
-    var KEY_LEFT = 37
-    var KEY_RIGHT = 39
-
     Polymer({
-      /**
-      * Event raised when a child control is selected.
-      * The event does not bubble.
-      * @event selected
-      */
       is: 'nebula-toolbar',
       hostAttributes: {
         'role': 'toolbar'
       },
+      behaviors: [
+        Nebula.SelectBehavior
+      ],
       properties: {
         /**
         * The direction of the toolbar.
@@ -87,164 +80,18 @@ The following demonstrates the element with some common properties and events:
           reflectToAttribute: true,
           notify: true,
           value: 'horizontal'
-        },
-        /**
-        * The index of the selected child element.
-        */
-        selected: {
-          type: Number,
-          reflectToAttribute: true,
-          notify: true,
-          readOnly: true
         }
       },
       observers: [
-        '_onSelectedChanged(selected)',
         '_onDirectionChanged(direction)'
       ],
-      listeners: {
-        'keydown': '_onKeyDown',
-        'click': '_onClick',
-        'focusin': '_onFocusIn',
-        'focusout': '_onFocusOut'
-      },
-      /**
-      * Event lifecycle handler triggered when element is attached to the DOM.
-      */
-      attached: function() {
-        this._children = this.getEffectiveChildren()
-        this._selectInitial()
-      },
       _onDirectionChanged: function(direction) {
         if (direction) {
           this.setAttribute('aria-orientation', direction)
         } else {
           this.setAttribute('aria-orientation', 'undefined')
         }
-      },
-      /**
-      * Property observer triggered when the `selected` property is changed.
-      * Applies the roving tabindex strategy, and focuses and checks the selected node.
-      */
-      _onSelectedChanged: function(selected) {
-        var target = this._children[selected]
-
-        this._children.forEach(function(el, i) {
-          if (i !== selected) {
-            el.setAttribute('tabindex', '-1')
-            el.removeAttribute('selected')
-          }
-        }, this)
-
-        target.setAttribute('tabindex', '0')
-        target.setAttribute('selected', '')        
-        if (this._isFocusEnabled && document.activeElement !== target) target.focus()
-        this.fire('selected', null, {bubbles: false, cancelable: false})
-      },
-      /**
-      * Event handler triggered when a child node has focus.
-      */
-      _onFocusIn: function(e) {
-        this._isFocusEnabled = true
-      },
-      /**
-      * Event handler triggered when a child node loses focus.
-      */
-      _onFocusOut: function(e) {
-        this._isFocusEnabled = false
-      },
-      /**
-      * Event handler triggered when a child node is changed.
-      * If applicable, changes the currently selected node to the changed node.
-      */
-      _onClick: function(e) {
-        var target = Polymer.dom(e).localTarget
-
-        // if target is not the current selected, then select it
-        if (target !== this._children[this.selected]) {
-          this._children.forEach(function(el, i) {
-            if (el === target) this._setSelected(i)
-          }.bind(this))
-        }
-      },
-      /**
-      * Event handler triggerd when a key is pressed down.
-      * Processes keyboard navigation for `a11y`.
-      */
-      _onKeyDown: function(e) {
-        if (this.hasAttribute('disabled')) return
-
-        var keyCode = e.keyCode || e.which
-        switch(keyCode) {
-          case KEY_UP:
-          case KEY_LEFT: {
-            e.preventDefault()
-            this._selectPrev()
-            break;
-          }
-          case KEY_DOWN:
-          case KEY_RIGHT: {
-            e.preventDefault()
-            this._selectNext()
-            break;
-          }
-        }
-      },
-      /**
-      * Evalutes if a node is eligible for being selected by the group.
-      */
-      _canSelect: function(el) {
-        return !(el.hasAttribute('disabled') || el.hasAttribute('hidden') || el.hasAttribute('aria-hidden'))
-      },
-      /**
-      * Finds initial selected index by looking for eligible child nodes that are checked.
-      */
-      _selectInitial: function() {
-        if (!(this._children && this._children.length > 0)) return
-        // search for any element that can be selected and is currently checked
-        for(var i = 0, len = this._children.length -1; i < len; i++) {
-          var el = this.children[i]
-          if (this._canSelect(el)) {
-            this._setSelected(i)
-            return i
-          }          
-        }
-        // if we didn't find an existing checked item, find the next best element
-        this._selectNext()
-      },
-      /**
-      * Select next eligible control in the group.
-      * Hidden and disabled controls are ignored.
-      */
-      _selectNext: function() {
-        if (!(this._children && this._children.length > 0)) return
-        var next = (this.selected === void 0) ? 0 : this.selected + 1
-        for (var i = 0, len = this._children.length - 1; i < len; i++) {
-          if (next === this._children.length) next = 0
-          if (this._canSelect(this._children[next])) {
-            this._setSelected(next)
-            return next
-          }
-          next++
-        }
-      },
-      /**
-      * Select the previous eligible control in the group.
-      * Hidden and disabled controls are ignored.
-      */
-      _selectPrev: function() {
-        if (!(this._children && this._children.length > 0)) return
-        var prev = (this.selected === void 0) ? 0 : this.selected - 1
-        for (var i = 0, len = this._children.length - 1; i < len; i++) {
-          if (prev < 0) prev = this._children.length - 1
-          if (this._canSelect(this._children[prev])) {
-            this._setSelected(prev)
-            return prev
-          }
-          prev--
-        }
       }
     })
-  }())
   </script>
 </dom-module>

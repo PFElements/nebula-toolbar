@@ -1,6 +1,6 @@
 {
   "name": "nebula-toolbar",
-  "description": "A web component to manage a group of toolbar controls.",
+  "description": "Manage keyboard accessibility for a set of toolbar controls.",
   "license": "ISC",
   "authors": [
     "Chris Beckett <chrisb@arsnebula.com>"
@@ -12,21 +12,10 @@
     "bower_components",
     "test"
   ],
-  "keywords": [
-    "polymer",
-    "webcomponent",
-    "web component",
-    "webcomponents",
-    "web-components",
-    "control",
-    "web-control",
-    "toolbar",
-    "navigation", 
-    "menu"
-  ],
   "main": "nebula-toolbar.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.7.1"
+    "polymer": "Polymer/polymer#^1.7.1",
+    "nebula-select": "arsnebula/nebula-select#^1.0.1"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

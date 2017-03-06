@@ -1,18 +1,19 @@
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/arsnebula/nebula-toolbar)
+[![Gitter chat](https://badges.gitter.im/org.png)](https://gitter.im/arsnebula/webcomponents)
 
-[![Build Status](https://saucelabs.com/browser-matrix/arsnebula.svg)](https://saucelabs.com/beta/builds/e2cf012d864e408cb701c4ee6be3875e)
+[![Build Status](https://saucelabs.com/browser-matrix/arsnebula.svg)](https://saucelabs.com/beta/builds/cc0a235e6d724ec49d8cc49a3ed08be7)
 
 # \<nebula-toolbar\>
 
-A web component to manage a group of toolbar controls.
+A web component to manage keyboard accessibility for a set of toolbar controls.
 
-* Simple container element to manage navigation for a group of controls
+* Simple container element to manage navigation and selection for a group of controls
 * Supports vertical and horizontal flexbox layout
 * Supports [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/#toolbar) authoring practices for **a11y**
 
 ## Installation
 
-```
+```sh
 $ bower install -S arsnebula/nebula-toolbar
 ```
 
@@ -27,7 +28,7 @@ Import the element:
 Add and configure the element.
 
 ```html
-<nebula-toolbar direction="vertical" selected="{{selected}}">
+<nebula-toolbar direction="vertical" selected="{{selected}}" on-selected="_onSelected">
   <a>Link1</a>
   <a>Link2</a>
   <a>Link3</a>
