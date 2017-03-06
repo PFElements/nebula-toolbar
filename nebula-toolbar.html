@@ -18,17 +18,38 @@ The container supports vertical and horizontal layout using the `direction` prop
 
 ## Usage
 
-The following demonstrates the element with some common properties and events:
+The following demonstrates the element with some common properties and events.
 
 ```html
-<nebula-toolbar direction="vertical">
-  <a hidden>Hidden</a>
-  <a>Link 1</a>
-  <a>Link 2</a>
-  <a>Link 3</a>
-  <a disabled>Link 4</a>
-  <a>Link 5</a>
+<nebula-toolbar>
+  <nebula-icon-button icon="editor:format-bold"></nebula-icon-button>
+  <nebula-icon-button icon="editor:format-italic"></nebula-icon-button>
+  <nebula-icon-button icon="editor:format-list-numbered"></nebula-icon-button>
+  <nebula-icon-button icon="editor:format-list-bulleted"></nebula-icon-button>
+  <nebula-icon-button icon="editor:format-align-left"></nebula-icon-button>
+  <nebula-icon-button icon="editor:format-align-right"></nebula-icon-button>
+  <nebula-icon-button icon="editor:attach-file"></nebula-icon-button>
 </nebula-toolbar>
+```
+
+## Style
+
+The element has very little default styling and mostly just implements some default flexbox styles. To customize the element, you can just use standard CSS.
+
+```css
+nebula-toolbar {
+  background-color: black;
+  color: white;
+  height: 48px;
+}
+```
+
+The element implements the `<nebula-select-behavior>` to support **a11y**. As the user navigates through through the toolbar with a keyboard or clicks any item it will be tagged with a `selected` property by default that can be used to style the active element if you are creating a menu.
+
+```css
+nebula-toolbar [selected] {
+  background-color: dimgrey;
+}
 ```
 
 @demo demo/index.html
@@ -38,25 +59,19 @@ The following demonstrates the element with some common properties and events:
   <template>
     <style>
       :host {
-        display: -ms-flexbox;
         display: -webkit-flex;
         display: flex;
+        -webkit-justify-content: space-around;
+        justify-content: space-around;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-align-content: center;
+        align-content: center;
         margin: 0;
         padding: 0;
         border: 0;
         outline: 0;
-        width: fit-content;
-        height: fit-content;
-      }
-      :host([direction=horizontal]) {
-        -ms-flex-direction: row;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-      }
-      :host([direction=vertical]) {
-        -ms-flex-direction: column;
-        -webkit-flex-direction: column;
-        flex-direction: column;
+        @apply --nebula-toolbar;
       }
     </style>
     <slot></slot>
@@ -69,29 +84,7 @@ The following demonstrates the element with some common properties and events:
       },
       behaviors: [
         Nebula.SelectBehavior
-      ],
-      properties: {
-        /**
-        * The direction of the toolbar.
-        * Accepted values are `horizontal` and `vertical`.
-        */
-        direction: {
-          type: String,
-          reflectToAttribute: true,
-          notify: true,
-          value: 'horizontal'
-        }
-      },
-      observers: [
-        '_onDirectionChanged(direction)'
-      ],
-      _onDirectionChanged: function(direction) {
-        if (direction) {
-          this.setAttribute('aria-orientation', direction)
-        } else {
-          this.setAttribute('aria-orientation', 'undefined')
-        }
-      }
+      ]
     })
   </script>
 </dom-module>

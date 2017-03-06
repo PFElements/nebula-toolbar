@@ -8,61 +8,43 @@
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-icons/editor-icons.html">
+    <link rel="import" href="../../nebula-icon-button/nebula-icon-button.html">
+    <link rel="import" href="../../nebula-flexbox/nebula-flexbox.html">
     <link rel="import" href="../nebula-toolbar.html">
-    <style is="custom-style" include="demo-pages-shared-styles">
-      .light {
-        display: inline-block;
-        background-color: white;
-        color: black;
-        padding: 16px;
-        border: 1px solid black;
-      }
-      .dark {
-        display: inline-block;
-        background-color: black;
-        color: white;
-        padding: 16px;
-        border: 1px solid black;
-      }
-      nebula-toolbar > * {
-        padding: 8px;
-        cursor: pointer;
-      }
-      nebula-toolbar [selected] {
-        color: white;
-        background-color: black;
-      }
-    </style>
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles nebula-flexbox">
+        nebula-toolbar {
+          background-color: black;
+          color: white;
+          height: 48px;
+        }
+        nebula-icon-button {
+          --nebula-icon-button-color: white;
+          --nebula-icon-button-active: {
+            background-color: dimgrey;
+            transition: background-color 0.25s ease;
+          }
+        }
+      </style>
+    </custom-style>
   </head>
   <body>
 
     <div class="vertical-section-container">
-      <h3>Horizontal Toolbar</h3>
+      <h3>Toolbar</h3>
       <demo-snippet>
         <template is="dom-bind">
-          <nebula-toolbar direction="horizontal">
-            <a hidden>Hidden</a>
-            <a>Link 1</a>
-            <a>Link 2</a>
-            <a>Link 3</a>
-            <a disabled>Link 4</a>
-            <a>Link 5</a>
-          </nebula-toolbar>
-        </template>
-      </demo-snippet>
-    </div>
-
-    <div class="vertical-section-container">
-      <h3>Vertical Toolbar</h3>
-      <demo-snippet>
-        <template is="dom-bind">
-          <nebula-toolbar direction="vertical">
-            <a hidden>Hidden</a>
-            <a>Link 1</a>
-            <a>Link 2</a>
-            <a>Link 3</a>
-            <a disabled>Link 4</a>
-            <a>Link 5</a>
+          <p>A simple flexbox layout that supports accessabilty. All child elements are centered, and extra space is divided between them based on toolbar width.</p>
+          <p>TAB into the toolbar and use HOME, END and the ARROW keys to navigate across the toolbar.</p>
+          <nebula-toolbar>
+            <nebula-icon-button icon="editor:format-bold"></nebula-icon-button>
+            <nebula-icon-button icon="editor:format-italic"></nebula-icon-button>
+            <nebula-icon-button icon="editor:format-list-numbered"></nebula-icon-button>
+            <nebula-icon-button icon="editor:format-list-bulleted"></nebula-icon-button>
+            <nebula-icon-button icon="editor:format-align-left"></nebula-icon-button>
+            <nebula-icon-button icon="editor:format-align-right"></nebula-icon-button>
+            <nebula-icon-button icon="editor:attach-file"></nebula-icon-button>
           </nebula-toolbar>
         </template>
       </demo-snippet>

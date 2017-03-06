@@ -1,7 +1,7 @@
 {
   "name": "nebula-toolbar",
-  "version": "1.0.1",
-  "description": "Manage keyboard accessibility for a set of toolbar controls.",
+  "version": "1.1.0",
+  "description": "A toolbar control with support for accessibility.",
   "license": "ISC",
   "author": "Chris Beckett <chrisb@arsnebula.com>",
   "homepage": "https://github.com/arsnebula/nebula-toolbar",

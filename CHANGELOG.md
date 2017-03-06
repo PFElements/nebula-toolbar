@@ -1,5 +1,10 @@
 # Change Log
 
+## [v1.1.0](https://github.com/arsnebula/nebula-toolbar/releases/tag/v1.1.0) (2017-03-06)
+
+- Removed direction property. **BREAKING**
+- Changed flex styles to automatically center and add space around toolbar items.
+
 ## [v1.0.1](https://github.com/arsnebula/nebula-toolbar/releases/tag/v1.0.1) (2017-03-05)
 
 - Changed internals to use nebula-select-behavior.
