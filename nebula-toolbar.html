@@ -1,59 +1,6 @@
-<!--
-@license
-Copyright (c) 2017 Ars Nebula LLC.
-This code may be used under the terms found in LICENSE.md of this repository.
--->
-
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../nebula-element-mixin/nebula-element-mixin.html">
 <link rel="import" href="../nebula-select/nebula-select-behavior.html">
-
-<!--
-`<nebula-toolbar>` is a web component to manage a group of toolbar controls.
-
-The element enforces group behavior such as ensuring that one, and only one control in the group is selected. If no initial control is selected, it will automatically select the first eligible control. Hidden and disabled controls can be included, but will be ignored from selection.
-
-The element implements keyboard navigation behavior defined in the [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/#toolbar) authoring practices for **a11y**. The element uses a *roving index* strategy for navigation within the group, so any `tabindex` set on an individual control will be modified as necessary.
-
-The container supports vertical and horizontal layout using the `direction` property.
-
-## Usage
-
-The following demonstrates the element with some common properties and events.
-
-```html
-<nebula-toolbar>
-  <nebula-icon-button icon="editor:format-bold"></nebula-icon-button>
-  <nebula-icon-button icon="editor:format-italic"></nebula-icon-button>
-  <nebula-icon-button icon="editor:format-list-numbered"></nebula-icon-button>
-  <nebula-icon-button icon="editor:format-list-bulleted"></nebula-icon-button>
-  <nebula-icon-button icon="editor:format-align-left"></nebula-icon-button>
-  <nebula-icon-button icon="editor:format-align-right"></nebula-icon-button>
-  <nebula-icon-button icon="editor:attach-file"></nebula-icon-button>
-</nebula-toolbar>
-```
-
-## Style
-
-The element has very little default styling and mostly just implements some default flexbox styles. To customize the element, you can just use standard CSS.
-
-```css
-nebula-toolbar {
-  background-color: black;
-  color: white;
-  height: 48px;
-}
-```
-
-The element implements the `<nebula-select-behavior>` to support **a11y**. As the user navigates through through the toolbar with a keyboard or clicks any item it will be tagged with a `selected` property by default that can be used to style the active element if you are creating a menu.
-
-```css
-nebula-toolbar [selected] {
-  background-color: dimgrey;
-}
-```
-
-@demo demo/index.html
--->
 
 <dom-module id="nebula-toolbar">
   <template>
@@ -71,20 +18,35 @@ nebula-toolbar [selected] {
         padding: 0;
         border: 0;
         outline: 0;
-        @apply --nebula-toolbar;
       }
     </style>
     <slot></slot>
   </template>
   <script>
-    Polymer({
-      is: 'nebula-toolbar',
-      hostAttributes: {
-        'role': 'toolbar'
-      },
-      behaviors: [
-        Nebula.SelectBehavior
-      ]
-    })
+  (function() {
+    'use strict'
+
+    /**
+    * A toolbar control with support for accessibility.
+    */
+    class NebulaToolbar extends Nebula.SelectBehavior(Nebula.ElementMixin(Polymer.Element)) {
+
+      /**
+      * Gets the custom element name.
+      * @return {string} The element name.
+      */
+      static get is() { return 'nebula-toolbar' }
+
+      /**
+      * Lifecycle callback invoked when element has been initialized.
+      */
+      ready() {
+        super.ready();
+        this.setAttribute('role', 'toolbar')
+      }
+    }
+
+    customElements.define(NebulaToolbar.is, NebulaToolbar)
+  }())
   </script>
 </dom-module>

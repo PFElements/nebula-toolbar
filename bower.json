@@ -2,6 +2,7 @@
   "name": "nebula-toolbar",
   "description": "A toolbar control with support for accessibility.",
   "license": "ISC",
+  "private": true,
   "authors": [
     "Chris Beckett <chrisb@arsnebula.com>"
   ],
@@ -12,17 +13,32 @@
     "bower_components",
     "test"
   ],
+  "keywords": [
+    "polymer",
+    "webcomponents",
+    "web-components",
+    "customelements",
+    "custom-elements",
+    "toolbar",
+    "menu"
+  ],
   "main": "nebula-toolbar.html",
+  "pages": {
+    "<nebula-toolbar>": "docs/nebula-toolbar.md"
+  },
+  "demos": {
+    "Demo": "demo/index.html"
+  },
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.7.1",
-    "nebula-select": "arsnebula/nebula-select#^1.0.2"
+    "polymer": "Polymer/polymer#^2.0.0-rc.1",
+    "nebula-select": "arsnebula/nebula-select#^2.0.0",
+    "nebula-element-mixin": "arsnebula/nebula-element-mixin#^2.0.0"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
-    "web-component-tester": "Polymer/web-component-tester#^5.0.0",
-    "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.4.0",
-    "nebula-icon-button": "arsnebula/nebula-icon-button#^1.2.0"
+    "web-component-tester": "polymer/web-component-tester#>=6.0.0 || 6.0.0-prerelease.5",
+    "nebula-test": "arsnebula/nebula-test#^2.0.0",
+    "nebula-label": "arsnebula/nebula-label#^2.0.0",
+    "nebula-icons": "arsnebula/nebula-icons#^2.0.0",
+    "nebula-icon-button": "arsnebula/nebula-icon-button#^2.0.0"
   }
 }
